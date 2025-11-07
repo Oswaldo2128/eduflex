@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,12 +19,8 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
-    <!-- iOS Icons -->
-    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
-
-    <!-- Favicon -->
+    <!-- Iconos optimizados -->
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-72x72.png">
 
     <link rel="stylesheet" href="styles.css">
@@ -70,63 +66,71 @@
                 <h2 class="text-center mb-4">Elige tu materia 📚</h2>
                 <div class="row g-3 mb-4">
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 subject-card" onclick="selectSubject('matematicas')">
-                            <div class="card-body text-center">
-                                <div class="fs-1 mb-2">🔢</div>
-                                <h3 class="h5 mb-3">Matemáticas</h3>
-                                <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="matematicas" style="width: 10%">
+                        <button class="btn p-0 w-100 h-100 subject-card" onclick="selectSubject('matematicas')">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="fs-1 mb-2">🔢</div>
+                                    <h3 class="h5 mb-3">Matemáticas</h3>
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-success" data-progress="matematicas"
+                                            style="width: 10%"></div>
                                     </div>
+                                    <small class="text-muted">Nivel <span data-level="matematicas">1</span> / 10</small>
+                                    <div class="mt-2">⭐ <span data-points="matematicas">0</span></div>
                                 </div>
-                                <small class="text-muted">Nivel <span data-level="matematicas">1</span> / 10</small>
-                                <div class="mt-2">⭐ <span data-points="matematicas">0</span></div>
                             </div>
-                        </div>
+                        </button>
                     </div>
 
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 subject-card" onclick="selectSubject('ciencias')">
-                            <div class="card-body text-center">
-                                <div class="fs-1 mb-2">🔬</div>
-                                <h3 class="h5 mb-3">Ciencias</h3>
-                                <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="ciencias" style="width: 10%">
+                        <button class="btn p-0 w-100 h-100 subject-card" onclick="selectSubject('ciencias')">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="fs-1 mb-2">🔬</div>
+                                    <h3 class="h5 mb-3">Ciencias</h3>
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-success" data-progress="ciencias"
+                                            style="width: 10%"></div>
                                     </div>
+                                    <small class="text-muted">Nivel <span data-level="ciencias">1</span> / 10</small>
+                                    <div class="mt-2">⭐ <span data-points="ciencias">0</span></div>
                                 </div>
-                                <small class="text-muted">Nivel <span data-level="ciencias">1</span> / 10</small>
-                                <div class="mt-2">⭐ <span data-points="ciencias">0</span></div>
                             </div>
-                        </div>
+                        </button>
                     </div>
 
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 subject-card" onclick="selectSubject('lengua')">
-                            <div class="card-body text-center">
-                                <div class="fs-1 mb-2">📖</div>
-                                <h3 class="h5 mb-3">Lengua</h3>
-                                <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="lengua" style="width: 10%">
+                        <button class="btn p-0 w-100 h-100 subject-card" onclick="selectSubject('lengua')">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="fs-1 mb-2">📖</div>
+                                    <h3 class="h5 mb-3">Lengua</h3>
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-success" data-progress="lengua" style="width: 10%">
+                                        </div>
                                     </div>
+                                    <small class="text-muted">Nivel <span data-level="lengua">1</span> / 10</small>
+                                    <div class="mt-2">⭐ <span data-points="lengua">0</span></div>
                                 </div>
-                                <small class="text-muted">Nivel <span data-level="lengua">1</span> / 10</small>
-                                <div class="mt-2">⭐ <span data-points="lengua">0</span></div>
                             </div>
-                        </div>
+                        </button>
                     </div>
 
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 subject-card" onclick="selectSubject('historia')">
-                            <div class="card-body text-center">
-                                <div class="fs-1 mb-2">🏛️</div>
-                                <h3 class="h5 mb-3">Historia</h3>
-                                <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="historia" style="width: 10%">
+                        <button class="btn p-0 w-100 h-100 subject-card" onclick="selectSubject('historia')">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <div class="fs-1 mb-2">🏛️</div>
+                                    <h3 class="h5 mb-3">Historia</h3>
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-success" data-progress="historia"
+                                            style="width: 10%"></div>
                                     </div>
+                                    <small class="text-muted">Nivel <span data-level="historia">1</span> / 10</small>
+                                    <div class="mt-2">⭐ <span data-points="historia">0</span></div>
                                 </div>
-                                <small class="text-muted">Nivel <span data-level="historia">1</span> / 10</small>
-                                <div class="mt-2">⭐ <span data-points="historia">0</span></div>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
 
@@ -151,7 +155,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="h5 mb-4" id="question-text"></h3>
+                        <h3 class="h5 mb-4" id="question-text" aria-live="polite">Cargando pregunta...</h3>
                         <div class="d-grid gap-2 mb-3" id="answers-container"></div>
                         <div id="feedback-box" class="alert d-none">
                             <p class="mb-2 fw-bold" id="feedback-text"></p>

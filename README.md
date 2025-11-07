@@ -5,12 +5,14 @@ Una aplicación web interactiva de aprendizaje estilo Duolingo, diseñada para e
 ## ✨ Características
 
 ### 📚 Materias Disponibles
+
 - **Matemáticas** 🔢 - Operaciones básicas, problemas y más
 - **Ciencias** 🔬 - Naturaleza, cuerpo humano, planetas
 - **Lengua** 📖 - Gramática, vocabulario, ortografía
 - **Historia** 🏛️ - Eventos históricos, culturas, personajes
 
 ### 🎮 Sistema de Gamificación
+
 - ⭐ **Puntos**: Gana puntos por cada respuesta correcta
 - 🔥 **Rachas**: Mantén una racha de días estudiando
 - 🏆 **Logros**: Desbloquea logros especiales
@@ -18,6 +20,7 @@ Una aplicación web interactiva de aprendizaje estilo Duolingo, diseñada para e
 - ⭐ **Sistema de Estrellas**: Obtén hasta 3 estrellas por quiz
 
 ### 🎯 Características de Aprendizaje
+
 - Preguntas adaptadas al nivel primaria
 - Diferentes niveles de dificultad
 - Feedback inmediato en cada respuesta
@@ -25,6 +28,7 @@ Una aplicación web interactiva de aprendizaje estilo Duolingo, diseñada para e
 - Interfaz colorida y amigable
 
 ### 🏆 Sistema de Logros
+
 - 👣 **Primeros Pasos**: Completa tu primer quiz
 - 💯 **Perfección**: Obtén 100% en un quiz
 - ⭐ **Coleccionista**: Acumula 100 puntos
@@ -62,6 +66,7 @@ AppIdiomas/
 ## 💾 Almacenamiento
 
 La aplicación guarda automáticamente tu progreso en el navegador usando `localStorage`:
+
 - Puntos totales y por materia
 - Nivel alcanzado en cada materia
 - Logros desbloqueados
@@ -99,6 +104,7 @@ Busca el array `achievementsDB` en `script.js` y agrega nuevos logros:
 ### Cambiar Colores
 
 Modifica las variables de color en `styles.css`:
+
 - Gradient principal: `#667eea` y `#764ba2`
 - Puedes cambiar estos valores por cualquier color que prefieras
 
@@ -120,6 +126,7 @@ Modifica las variables de color en `styles.css`:
 ## 📱 Responsive Design
 
 La aplicación está completamente optimizada para:
+
 - 💻 Computadoras de escritorio
 - 📱 Teléfonos móviles
 - 📱 Tablets

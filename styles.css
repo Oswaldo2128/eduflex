@@ -1,4 +1,4 @@
-/* Estilos mínimos personalizados con Bootstrap 5 */
+/* EDUFLEX - Estilos optimizados */
 
 body {
     background-color: #f8f9fa;
@@ -7,7 +7,7 @@ body {
     user-select: none;
 }
 
-/* Screen System */
+/* Sistema de pantallas */
 .screen {
     display: none;
 }
@@ -16,88 +16,88 @@ body {
     display: block;
 }
 
-/* Subject Cards */
+/* Tarjetas de materias */
 .subject-card {
-    cursor: pointer;
-    transition: transform 0.2s;
+    border: none;
+    background: none;
+    transition: transform 0.2s ease;
 }
 
 .subject-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
-/* Answer Buttons */
+.subject-card:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* Botones de respuesta */
 .answer-btn {
-    padding: 12px;
+    padding: 12px 16px;
     background: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 0.375rem;
     cursor: pointer;
     text-align: left;
     width: 100%;
+    transition: all 0.2s ease;
 }
 
 .answer-btn:hover:not(:disabled) {
     background: #e9ecef;
+    transform: translateY(-1px);
 }
 
 .answer-btn.correct {
     background-color: #d1e7dd;
     border-color: #198754;
+    color: #0f5132;
 }
 
 .answer-btn.incorrect {
     background-color: #f8d7da;
     border-color: #dc3545;
+    color: #842029;
 }
 
 .answer-btn:disabled {
     cursor: not-allowed;
 }
 
-/* Feedback Box */
-#feedback-box.alert-success {
-    background-color: #d1e7dd;
-    border-color: #badbcc;
-    color: #0f5132;
-}
-
-#feedback-box.alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-    color: #842029;
-}
-
-/* Achievements */
+/* Tarjetas de logros */
 .achievement-card {
     text-align: center;
+    transition: opacity 0.3s ease;
 }
 
 .achievement-card.locked {
-    opacity: 0.5;
+    opacity: 0.4;
     filter: grayscale(100%);
 }
 
-/* Install Prompt */
-#install-prompt.show {
-    transform: translateY(0) !important;
+/* Toast personalizado */
+#toast {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 0.5rem;
 }
 
-/* Toast */
-#toast.show {
-    opacity: 1;
-}
-
-/* Touch optimizations */
-input, button, select, textarea {
+/* Optimización táctil */
+input,
+button,
+select,
+textarea {
     font-size: 16px !important;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 576px) {
     .badge {
         font-size: 0.7rem;
     }
-}
 
-/* Remove all the old custom styles - Bootstrap handles everything now! */
+    .subject-card:hover {
+        transform: scale(1.01);
+    }
+}
