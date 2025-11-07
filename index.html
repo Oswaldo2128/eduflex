@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,35 +10,40 @@
     <meta name="apple-mobile-web-app-title" content="EDUFLEX">
     <meta name="theme-color" content="#667eea">
     <meta name="description" content="Aplicación de aprendizaje para primaria estilo Duolingo">
-    
+
     <title>EDUFLEX - Aprende Jugando 🎓</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- iOS Icons -->
     <link rel="apple-touch-icon" href="icons/icon-152x152.png">
     <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-72x72.png">
-    
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="bg-white border-bottom sticky-top">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center py-3">
                 <h1 class="h4 mb-0 fw-bold">🎓 EDUFLEX</h1>
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 align-items-center">
                     <span class="badge bg-light text-dark border">⭐ <span id="total-points">0</span></span>
                     <span class="badge bg-light text-dark border">🔥 <span id="streak">0</span></span>
                     <span class="badge bg-light text-dark border">🏆 <span id="achievements">0</span></span>
+                    <button class="btn btn-sm btn-light border" onclick="toggleSound()"
+                        title="Activar/Desactivar sonido">
+                        <span id="sound-icon">🔊</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -52,7 +58,8 @@
                     <div class="card-body text-center p-4">
                         <h2 class="h3 mb-3">¡Bienvenido a EDUFLEX! 🌟</h2>
                         <p class="text-muted mb-4">Aprende jugando con las materias más divertidas</p>
-                        <input type="text" id="username-input" class="form-control mb-3" placeholder="¿Cómo te llamas?" maxlength="20">
+                        <input type="text" id="username-input" class="form-control mb-3" placeholder="¿Cómo te llamas?"
+                            maxlength="20">
                         <button class="btn btn-success w-100" onclick="startApp()">¡Comenzar! 🚀</button>
                     </div>
                 </div>
@@ -68,7 +75,8 @@
                                 <div class="fs-1 mb-2">🔢</div>
                                 <h3 class="h5 mb-3">Matemáticas</h3>
                                 <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="matematicas" style="width: 10%"></div>
+                                    <div class="progress-bar bg-success" data-progress="matematicas" style="width: 10%">
+                                    </div>
                                 </div>
                                 <small class="text-muted">Nivel <span data-level="matematicas">1</span> / 10</small>
                                 <div class="mt-2">⭐ <span data-points="matematicas">0</span></div>
@@ -82,7 +90,8 @@
                                 <div class="fs-1 mb-2">🔬</div>
                                 <h3 class="h5 mb-3">Ciencias</h3>
                                 <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="ciencias" style="width: 10%"></div>
+                                    <div class="progress-bar bg-success" data-progress="ciencias" style="width: 10%">
+                                    </div>
                                 </div>
                                 <small class="text-muted">Nivel <span data-level="ciencias">1</span> / 10</small>
                                 <div class="mt-2">⭐ <span data-points="ciencias">0</span></div>
@@ -96,7 +105,8 @@
                                 <div class="fs-1 mb-2">📖</div>
                                 <h3 class="h5 mb-3">Lengua</h3>
                                 <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="lengua" style="width: 10%"></div>
+                                    <div class="progress-bar bg-success" data-progress="lengua" style="width: 10%">
+                                    </div>
                                 </div>
                                 <small class="text-muted">Nivel <span data-level="lengua">1</span> / 10</small>
                                 <div class="mt-2">⭐ <span data-points="lengua">0</span></div>
@@ -110,7 +120,8 @@
                                 <div class="fs-1 mb-2">🏛️</div>
                                 <h3 class="h5 mb-3">Historia</h3>
                                 <div class="progress mb-2" style="height: 8px;">
-                                    <div class="progress-bar bg-success" data-progress="historia" style="width: 10%"></div>
+                                    <div class="progress-bar bg-success" data-progress="historia" style="width: 10%">
+                                    </div>
                                 </div>
                                 <small class="text-muted">Nivel <span data-level="historia">1</span> / 10</small>
                                 <div class="mt-2">⭐ <span data-points="historia">0</span></div>
@@ -129,8 +140,10 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="backToSubjects()">← Volver</button>
-                            <span class="fw-bold">Pregunta <span id="current-question">1</span> / <span id="total-questions">5</span></span>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="backToSubjects()">←
+                                Volver</button>
+                            <span class="fw-bold">Pregunta <span id="current-question">1</span> / <span
+                                    id="total-questions">5</span></span>
                             <span class="fw-bold">⭐ <span id="quiz-points">0</span></span>
                         </div>
                     </div>
@@ -154,7 +167,7 @@
                     <div class="card-body text-center p-4">
                         <h2 class="h4 mb-3" id="results-title">¡Excelente trabajo! 🎉</h2>
                         <div class="fs-1 mb-3" id="results-stars"></div>
-                        
+
                         <div class="list-group list-group-flush mb-4">
                             <div class="list-group-item d-flex justify-content-between">
                                 <span>Puntos ganados</span>
@@ -172,7 +185,8 @@
 
                         <div class="d-flex gap-2">
                             <button class="btn btn-success flex-fill" onclick="retryQuiz()">🔄 Repetir</button>
-                            <button class="btn btn-outline-secondary flex-fill" onclick="backToSubjects()">📚 Cambiar materia</button>
+                            <button class="btn btn-outline-secondary flex-fill" onclick="backToSubjects()">📚 Cambiar
+                                materia</button>
                         </div>
                     </div>
                 </div>
@@ -199,7 +213,8 @@
     </div>
 
     <!-- Install Prompt -->
-    <div class="position-fixed bottom-0 start-0 end-0 bg-white border-top p-3" id="install-prompt" style="transform: translateY(100%); transition: transform 0.3s; z-index: 1040;">
+    <div class="position-fixed bottom-0 start-0 end-0 bg-white border-top p-3" id="install-prompt"
+        style="transform: translateY(100%); transition: transform 0.3s; z-index: 1040;">
         <div class="container">
             <h3 class="h6 text-center mb-2">📱 Instalar EDUFLEX</h3>
             <p class="text-center text-muted small mb-3">Instala la app en tu dispositivo para una mejor experiencia</p>
@@ -214,4 +229,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

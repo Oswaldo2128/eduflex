@@ -4,6 +4,7 @@ let gameState = {
     totalPoints: 0,
     streak: 0,
     currentSubject: '',
+    soundEnabled: true,
     subjects: {
         matematicas: { level: 1, points: 0, progress: 10 },
         ciencias: { level: 1, points: 0, progress: 10 },
@@ -18,6 +19,113 @@ let gameState = {
         points: 0
     }
 };
+
+// Audio Context for Sound Effects
+let audioContext;
+
+function initAudio() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+// Sound Effects Functions
+function playSound(type) {
+    if (!gameState.soundEnabled) return;
+    
+    initAudio();
+    
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    switch(type) {
+        case 'correct':
+            // Sonido alegre de acierto
+            oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+            oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+            oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+            break;
+            
+        case 'incorrect':
+            // Sonido de error (descendente)
+            oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.3);
+            oscillator.type = 'sawtooth';
+            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+            break;
+            
+        case 'click':
+            // Click suave
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+            oscillator.type = 'sine';
+            gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+            break;
+            
+        case 'achievement':
+            // Fanfarria de logro
+            oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+            oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+            oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+            oscillator.frequency.setValueAtTime(1046.50, audioContext.currentTime + 0.3); // C6
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+            break;
+            
+        case 'complete':
+            // Sonido de completar quiz
+            oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.15);
+            oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.3);
+            oscillator.frequency.setValueAtTime(1046.50, audioContext.currentTime + 0.45);
+            gainNode.gain.setValueAtTime(0.25, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.6);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.6);
+            break;
+            
+        case 'start':
+            // Sonido de inicio
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(554.37, audioContext.currentTime + 0.1);
+            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.2);
+            break;
+    }
+}
+
+function toggleSound() {
+    gameState.soundEnabled = !gameState.soundEnabled;
+    saveGameState();
+    
+    const icon = document.getElementById('sound-icon');
+    if (icon) {
+        icon.textContent = gameState.soundEnabled ? '🔊' : '🔇';
+    }
+    
+    if (gameState.soundEnabled) {
+        playSound('click');
+        showToast('Sonido activado 🔊');
+    } else {
+        showToast('Sonido desactivado 🔇');
+    }
+}
 
 // Questions Database
 const questionsDB = {
@@ -222,10 +330,12 @@ function startApp() {
     const username = document.getElementById('username-input').value.trim();
     
     if (!username) {
+        playSound('incorrect');
         showToast('¡Por favor escribe tu nombre! 😊');
         return;
     }
     
+    playSound('start');
     gameState.username = username;
     loadGameState();
     updateUI();
@@ -243,6 +353,7 @@ function showScreen(screenId) {
 
 // Subject Selection
 function selectSubject(subject) {
+    playSound('click');
     gameState.currentSubject = subject;
     startQuiz(subject);
 }
@@ -298,6 +409,9 @@ function checkAnswer(selectedIndex) {
     const question = quiz.questions[quiz.currentIndex];
     const isCorrect = selectedIndex === question.correct;
     
+    // Play sound
+    playSound(isCorrect ? 'correct' : 'incorrect');
+    
     // Disable all buttons
     const buttons = document.querySelectorAll('.answer-btn');
     buttons.forEach((btn, index) => {
@@ -330,6 +444,7 @@ function showFeedback(isCorrect, message) {
 }
 
 function nextQuestion() {
+    playSound('click');
     const quiz = gameState.currentQuiz;
     quiz.currentIndex++;
     
@@ -346,6 +461,9 @@ function showResults() {
     const correctAnswers = quiz.correctAnswers;
     const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
     const earnedPoints = quiz.points;
+    
+    // Play completion sound
+    playSound('complete');
     
     // Update game state
     gameState.totalPoints += earnedPoints;
@@ -380,7 +498,13 @@ function showResults() {
 }
 
 function retryQuiz() {
+    playSound('click');
     startQuiz(gameState.currentSubject);
+}
+
+function backToSubjects() {
+    playSound('click');
+    showScreen('subjects-screen');
 }
 
 // Achievements
@@ -420,6 +544,7 @@ function checkAchievements(correctAnswers, totalQuestions, earnedPoints) {
             gameState.achievements.push(id);
             const achievement = achievementsDB.find(a => a.id === id);
             if (achievement) {
+                playSound('achievement');
                 showToast(`🏆 ¡Logro desbloqueado! ${achievement.name}`);
             }
         }
@@ -427,6 +552,7 @@ function checkAchievements(correctAnswers, totalQuestions, earnedPoints) {
 }
 
 function showAchievements() {
+    playSound('click');
     const container = document.getElementById('achievements-container');
     container.innerHTML = '';
     
@@ -456,6 +582,12 @@ function updateUI() {
     document.getElementById('streak').textContent = gameState.streak;
     document.getElementById('achievements').textContent = gameState.achievements.length;
     
+    // Update sound icon
+    const soundIcon = document.getElementById('sound-icon');
+    if (soundIcon) {
+        soundIcon.textContent = gameState.soundEnabled ? '🔊' : '🔇';
+    }
+    
     // Update subject cards
     Object.keys(gameState.subjects).forEach(subject => {
         const data = gameState.subjects[subject];
@@ -467,10 +599,6 @@ function updateUI() {
         if (pointsElement) pointsElement.textContent = data.points;
         if (progressElement) progressElement.style.width = `${data.progress}%`;
     });
-}
-
-function backToSubjects() {
-    showScreen('subjects-screen');
 }
 
 // Toast Notifications
@@ -568,12 +696,12 @@ function vibrate(duration = 10) {
     }
 }
 
-// Update checkAnswer to include vibration
-const originalCheckAnswer = checkAnswer;
-checkAnswer = function(selectedIndex) {
-    vibrate(15);
-    originalCheckAnswer(selectedIndex);
-};
+// Enhance vibration with sound awareness
+function vibrateWithSound(duration = 15) {
+    if (gameState.soundEnabled) {
+        vibrate(duration);
+    }
+}
 
 // Optimize for mobile performance
 if ('requestIdleCallback' in window) {
