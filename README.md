@@ -1,4 +1,4 @@
-# 🎓 EduKids - Aplicación de Aprendizaje para Primaria
+# 🎓 EDUFLEX - Aplicación Educativa para Primaria
 
 Una aplicación web interactiva de aprendizaje estilo Duolingo, diseñada para estudiantes de nivel primaria.
 
@@ -55,11 +55,13 @@ Una aplicación web interactiva de aprendizaje estilo Duolingo, diseñada para e
 ## 📁 Estructura del Proyecto
 
 ```
-AppIdiomas/
+EDUFLEX/
 │
 ├── index.html          # Estructura HTML de la aplicación
 ├── styles.css          # Estilos y diseño responsive
 ├── script.js           # Lógica del juego y gestión de estado
+├── service-worker.js   # Service Worker para PWA
+├── manifest.json       # Manifest de la aplicación web
 └── README.md          # Este archivo
 ```
 
@@ -96,16 +98,15 @@ Busca el array `achievementsDB` en `script.js` y agrega nuevos logros:
     id: 'mi_logro',
     icon: '🎯',
     name: 'Nombre del Logro',
-    description: 'Descripción de cómo desbloquearlo',
-    unlocked: false
+    description: 'Descripción de cómo desbloquearlo'
 }
 ```
 
 ### Cambiar Colores
 
-Modifica las variables de color en `styles.css`:
+Modifica las variables de color en `styles.css` y `manifest.json`:
 
-- Gradient principal: `#667eea` y `#764ba2`
+- Color principal: `#667eea`
 - Puedes cambiar estos valores por cualquier color que prefieras
 
 ## 🌐 Compatibilidad
@@ -115,13 +116,25 @@ Modifica las variables de color en `styles.css`:
 - ✅ Safari
 - ✅ Opera
 - 📱 Responsive (funciona en móviles y tablets)
+- 🚀 PWA (Progressive Web App)
 
 ## 🔧 Tecnologías Utilizadas
 
 - **HTML5**: Estructura semántica
-- **CSS3**: Diseño moderno con gradientes y animaciones
-- **JavaScript (Vanilla)**: Lógica del juego sin dependencias
+- **CSS3**: Diseño moderno con Bootstrap 5
+- **JavaScript (ES6+)**: Lógica optimizada del juego
+- **Service Worker**: Funcionalidad offline
+- **PWA**: Instalable como aplicación nativa
 - **LocalStorage**: Persistencia de datos
+
+## 📱 PWA Features
+
+EDUFLEX es una Progressive Web App que incluye:
+
+- 📴 **Funciona sin conexión**: Una vez cargada, funciona offline
+- 📱 **Instalable**: Se puede instalar como app nativa en móviles
+- ⚡ **Rápida**: Cache inteligente para carga instantánea
+- 🔄 **Auto-actualizable**: Se actualiza automáticamente
 
 ## 📱 Responsive Design
 
@@ -138,7 +151,7 @@ La aplicación está completamente optimizada para:
 - [ ] Temporizador para preguntas
 - [ ] Tabla de clasificación
 - [ ] Avatares personalizables
-- [ ] Sonidos y efectos
+- [ ] Sonidos y efectos mejorados
 - [ ] Modo oscuro
 - [ ] Estadísticas detalladas
 - [ ] Exportar progreso
@@ -159,8 +172,8 @@ Este proyecto es de código abierto y está disponible para uso educativo.
 
 ## 🤝 Contribuir
 
-¿Tienes ideas para mejorar EduKids? ¡Las sugerencias son bienvenidas!
+¿Tienes ideas para mejorar EDUFLEX? ¡Las sugerencias son bienvenidas!
 
 ---
 
-**¡Diviértete aprendiendo! 🎉📚**
+**¡Diviértete aprendiendo con EDUFLEX! 🎉📚**
